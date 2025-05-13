@@ -23,6 +23,9 @@ public class OrderService {
     @Autowired
     private DexClient dexClient;
 
+    @Autowired
+    private KafkaProducerService kafkaProducerService;
+
     public void placeOrder(OrderRequest request) {
         List<OrderRequest.Item> items = request.getItems();
 
@@ -88,7 +91,8 @@ public class OrderService {
         payload.put("orderId", order.getId());
         payload.put("items", items);
 
-        dexClient.pushToDex(payload, "OrderPlaced");
+        // dexClient.pushToDex(payload, "OrderPlaced");
+        kafkaProducerService.sendEvent("OrderPlaced", payload);
     }
 }
 
