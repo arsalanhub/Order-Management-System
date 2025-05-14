@@ -1,4 +1,4 @@
-# 📦 1. Product Service and Entity Design
+# 📦 Product Service and Entity Design
 
 ## Entities
 
