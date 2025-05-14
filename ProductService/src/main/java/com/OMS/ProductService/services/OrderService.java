@@ -58,6 +58,7 @@ public class OrderService {
                 if (product.getId().equals(requestedProductId)) {
                     if (product.getAvailableQuantity() >= requestedQty) {
                         validQty = true;
+                        product.setAvailableQuantity(product.getAvailableQuantity() - requestedQty);
                         break;
                     } else {
                         throw new IllegalArgumentException("Insufficient stock for product: " + product.getName());
@@ -69,6 +70,8 @@ public class OrderService {
                 throw new IllegalArgumentException("Product not found during quantity check.");
             }
         }
+
+        productRepository.saveAll(foundProducts);
 
         // 4. Save Order in PENDING state
         Order order = new Order();
