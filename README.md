@@ -139,5 +139,6 @@ Once running:
 3.  Consumer service picks the message, checks inventory, and updates order status.
 4.  Fetch the updated order via `GET /orders/{orderId}`.
 
+## Timeseries Diagram
 
 ![timeseries diagram](https://github.com/user-attachments/assets/28f77f05-a753-426c-9618-eff956574479)
